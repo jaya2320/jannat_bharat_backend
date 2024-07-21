@@ -26,6 +26,24 @@ SECRET_KEY = 'django-insecure-f+ei&v#b+%qrf_382#v0iiv_x$66u_dne@x04lerkrt^n14&4_
 DEBUG = True
 
 ALLOWED_HOSTS = []
+# settings.py
+CKEDITOR_UPLOAD_PATH = "uploads/"
+# settings.py
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': [
+            {'name': 'basic', 'items': ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript']},
+            {'name': 'paragraph', 'items': ['NumberedList', 'BulletedList', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock']},
+            {'name': 'styles', 'items': ['Styles', 'Format', 'FontSize']},
+            {'name': 'colors', 'items': ['TextColor', 'BGColor']},
+            {'name': 'links', 'items': ['Link', 'Unlink']},
+            {'name': 'tools', 'items': ['Maximize', 'ShowBlocks']},
+            {'name': 'table', 'items': ['Table', 'TableProperties', 'TableCellProperties', 'TableColumn', 'TableRow']},
+        ],  # Full toolbar includes options for bullet points, bold text, etc.
+        'height': 150,
+        'width': '100%',
+    },
+}
 
 
 # Application definition
@@ -37,6 +55,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'trips',
+    'ckeditor',
+    'ckeditor_uploader'
 ]
 
 MIDDLEWARE = [

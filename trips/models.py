@@ -58,11 +58,10 @@ class Itinerary(models.Model):
         return f"Day {self.day} - {self.trip.title}"
 
     def clean(self):
-        from django.core.exceptions import ValidationError
-        if not self.day:
+        if self.day==None:
             raise ValidationError('Day is required.')
-        if not self.overview:
-            raise ValidationError('Overview is required.')
+        if not self.details:
+            raise ValidationError('Details is required.')
 
 class Trip(models.Model):
     title = models.CharField(max_length=200)
@@ -71,7 +70,7 @@ class Trip(models.Model):
     duration = models.PositiveIntegerField()
     start_date = models.DateField()
     end_date = models.DateField()
-    policy_details=models.OneToOneField(Policies,on_delete=models.CASCADE)
+    policy_details=models.OneToOneField(Policies,on_delete=models.CASCADE, related_name='trip')
     inquiry_form = models.OneToOneField(InquiryContact,on_delete=models.CASCADE)
 
 

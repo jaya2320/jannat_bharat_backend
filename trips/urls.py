@@ -1,8 +1,9 @@
 # trips/urls.py
 from django.urls import path
 from . import views
+from .views import TripListAPIView, TripDetailAPIView
 
 urlpatterns = [
-    path('getTrips/', views.trip_list),  # URL for listing trips
-    path('<int:pk>/', views.trip_detail),  # URL for trip details
+    path('getTrips/', TripListAPIView.as_view()),  # URL for listing trips
+    path('tripDetail/<int:pk>', TripDetailAPIView.as_view()),  # URL for trip details
 ]

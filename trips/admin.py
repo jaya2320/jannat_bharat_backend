@@ -20,7 +20,6 @@ class ItineraryInlineFormSet(BaseInlineFormSet):
 
 class ItineraryInline(admin.TabularInline):
     model = Itinerary
-    formset = ItineraryInlineFormSet
     extra = 1  # One extra blank form by default
     can_delete = False  # Disable the delete option
 

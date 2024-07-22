@@ -46,9 +46,9 @@ db.sqlite3
 *.pyd
 *.pid
 
-# Django migrations
-*/migrations/*
-!*/migrations/__init__.py
+## Django migrations
+#*/migrations/*
+#!*/migrations/__init__.py
 
 # Media files
 media/
@@ -101,3 +101,4 @@ dmypy.json
 # Pyre
 .pyre/
 
+/Desktop

@@ -36,7 +36,7 @@ class TripSerializer(serializers.ModelSerializer):
     inquiry_contact_details = InquiryContactSerializer(read_only=True)
     class Meta:
         model = Trip
-        fields = ["id","title","banner_image","overview","duration","start_date","end_date"
+        fields = ["id","title","banner_image","overview","duration","start_date","end_date","type_of_group"
                   ,"inquiry_contact_details","itineraries","mustKnow","pickupDetails","policy_details"]
 
 

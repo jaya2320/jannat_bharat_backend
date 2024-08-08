@@ -102,3 +102,7 @@ dmypy.json
 .pyre/
 
 /Desktop
+/banners
+/uploads
+/jb-venv
+/important_command.txt

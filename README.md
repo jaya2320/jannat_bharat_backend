@@ -34,6 +34,9 @@
    ```
      pip install Pillow
    ```
+   ```
+      pip install django-cors-headers
+   ```
 
 ### Django Commands 
 

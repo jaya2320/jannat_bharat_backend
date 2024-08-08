@@ -41,13 +41,7 @@ CKEDITOR_CONFIGS = {
             {'name': 'table', 'items': ['Table', 'TableProperties', 'TableCellProperties', 'TableColumn', 'TableRow']},
         ],  # Full toolbar includes options for bullet points, bold text, etc.
         'height': 150,
-        'width': '100%',
-        'extraPlugins': 'lineheight',  # Enable LineHeight plugin
-                'line_height': '1.5;2;2.5;3',  # Default line height options
-                'stylesSet': [
-                    {'name': 'Normal', 'element': 'p', 'attributes': {'class': 'normal-line-height'}},
-                    # You can define more styles here
-                ]
+        'width': '100%'
     },
 }
 

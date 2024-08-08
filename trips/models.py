@@ -10,11 +10,13 @@ class InquiryContact(models.Model):
         return f"{self.email}"
 
 class Policies(models.Model):
+    policy_name = models.CharField(max_length=100)
     why_us= RichTextField(blank=True, null=True)
     cancellation_policy=RichTextField(blank=True, null=True)
     terms_and_conditions = RichTextField()
+    
     def __str__(self):
-        return "Policy"
+        return self.policy_name
 
 
 class MustKnow(models.Model):
@@ -27,8 +29,6 @@ class MustKnow(models.Model):
         return "MustKnow"
 
 
-
-
 class PickupDetails(models.Model):
     trip = models.ForeignKey('Trip', related_name='pickupDetails', on_delete=models.CASCADE)
     pickup_point = models.CharField(max_length=255)
@@ -39,10 +39,10 @@ class PickupDetails(models.Model):
     triple_sharing_price = models.DecimalField(max_digits=10, decimal_places=2,null=True,blank=True)
     double_sharing_price = models.DecimalField(max_digits=10, decimal_places=2,null=True,blank=True)
     single_price = models.DecimalField(max_digits=10, decimal_places=2,null=True,blank=True)
-    per_person_price = models.DecimalField(max_digits=10, decimal_places=2,null=True,blank=True)
+    # per_person_price = models.DecimalField(max_digits=10, decimal_places=2,null=True,blank=True)
+    
     def __str__(self):
         return f"{self.pickup_point} at {self.arrival_timing}"
-
 
 
 class Itinerary(models.Model):
@@ -60,6 +60,7 @@ class Itinerary(models.Model):
         if not self.details:
             raise ValidationError('Details is required.')
 
+
 class Trip(models.Model):
     title = models.CharField(max_length=200)
     banner_image = models.ImageField(upload_to='banners/')
@@ -68,9 +69,9 @@ class Trip(models.Model):
     start_date = models.DateField()
     end_date = models.DateField()
     type_of_group=models.CharField(max_length=20)
-    policy_details=models.OneToOneField(Policies,on_delete=models.CASCADE, related_name='trip')
-    inquiry_form = models.OneToOneField(InquiryContact,on_delete=models.CASCADE)
-
+    policy_details=models.ForeignKey(Policies,on_delete=models.CASCADE, related_name='policies')
+    inquiry_form = models.ForeignKey(InquiryContact,on_delete=models.CASCADE, related_name='inquiries')
+    pdf = models.FileField(upload_to='uploads/', verbose_name='PDF', blank=True, null=True)
 
     def __str__(self):
         return self.title

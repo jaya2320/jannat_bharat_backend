@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Trip, InquiryContact, Policies, PickupDetails, Itinerary, MustKnow
+from .models import Trip, InquiryContact, Policies, PickupDetails, Itinerary, MustKnow, About
 from django.core.exceptions import ValidationError
 
 class ItineraryInline(admin.TabularInline):
@@ -51,3 +51,4 @@ class InquiryContactAdmin(admin.ModelAdmin):
 admin.site.register(Trip, TripAdmin)
 admin.site.register(InquiryContact,InquiryContactAdmin)
 admin.site.register(Policies)
+admin.site.register(About)

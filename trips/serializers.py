@@ -1,6 +1,12 @@
 # trips/serializers.py
 from rest_framework import serializers
-from .models import Trip, Itinerary, MustKnow, PickupDetails, Policies, InquiryContact
+from .models import Trip, Itinerary, MustKnow, PickupDetails, Policies, InquiryContact, About
+
+
+class AboutSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=About
+        fields="__all__"
 
 class ItinerarySerializer(serializers.ModelSerializer):
     class Meta:

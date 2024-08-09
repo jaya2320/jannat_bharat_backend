@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'trips',
+    'about',
     'ckeditor',
     'ckeditor_uploader',
     'rest_framework',

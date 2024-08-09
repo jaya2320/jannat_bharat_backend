@@ -1,5 +1,5 @@
-from .models import Trip, About
-from .serializers import TripSerializer, AboutSerializer
+from .models import Trip
+from .serializers import TripSerializer
 from rest_framework import generics, filters
 from django.utils import timezone
 
@@ -17,7 +17,4 @@ class TripListAPIView(generics.ListCreateAPIView):
     def get_queryset(self):
         today = timezone.now().date()  # Get today's date without time
         return Trip.objects.filter(start_date__gt=today)
-    
-class AboutContentAPIView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = About.objects.all()
-    serializer_class = AboutSerializer
+

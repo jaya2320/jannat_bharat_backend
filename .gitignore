@@ -102,6 +102,8 @@ dmypy.json
 .pyre/
 
 /Desktop
+/trips/banners
+/trips/uploads
 /banners
 /uploads
 /jb-venv

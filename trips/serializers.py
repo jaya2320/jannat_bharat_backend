@@ -2,7 +2,6 @@
 from rest_framework import serializers
 from .models import Trip, Itinerary, MustKnow, PickupDetails, Policies, InquiryContact
 
-
 class ItinerarySerializer(serializers.ModelSerializer):
     class Meta:
         model=Itinerary
@@ -37,7 +36,7 @@ class TripSerializer(serializers.ModelSerializer):
     class Meta:
         model = Trip
         fields = ["id","title","banner_image","overview","duration","start_date","end_date","type_of_group"
-                  ,"inquiry_contact_details","itineraries","mustKnow","pickupDetails","policy_details"]
+                  ,"inquiry_contact_details","itineraries","mustKnow","pickupDetails","policy_details", "pdf"]
 
 
 

@@ -109,3 +109,4 @@ dmypy.json
 /uploads
 /jb-venv
 /important_command.txt
+/*.exe

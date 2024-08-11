@@ -14,6 +14,10 @@ class Policies(models.Model):
     why_us= RichTextField(blank=True, null=True)
     cancellation_policy=RichTextField(blank=True, null=True)
     terms_and_conditions = RichTextField()
+
+    class Meta: 
+        verbose_name = "Policies"
+        verbose_name_plural = "Policies"
     
     def __str__(self):
         return self.policy_name

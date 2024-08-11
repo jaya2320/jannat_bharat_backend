@@ -7,13 +7,8 @@ class ItineraryInline(admin.TabularInline):
     extra = 1  # One extra blank form by default
     can_delete = False  # Disable the delete option
 
-    def get_max_num(self, request, obj=None, **kwargs):
-        if obj:
-            return obj.duration
-        return 1
-
     def has_add_permission(self, request, obj=None):
-        if obj and self.model.objects.filter(trip=obj).count() >= obj.duration:
+        if obj and obj.duration and self.model.objects.filter(trip=obj).count() >= obj.duration:
             return False
         return True
 

@@ -69,7 +69,7 @@ class Trip(models.Model):
     title = models.CharField(max_length=200)
     banner_image = models.ImageField(upload_to='trips/banners/')
     overview= RichTextField()
-    duration = models.PositiveIntegerField()
+    duration = models.PositiveIntegerField(default=0)
     start_date = models.DateField()
     end_date = models.DateField()
     type_of_group=models.CharField(max_length=20)

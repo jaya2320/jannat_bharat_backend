@@ -1,7 +1,18 @@
 from rest_framework import generics
 from django.http import Http404
-from .models import About, GalleryImage, Review
-from .serializers import AboutSerializer, GallerySerializer, ReviewSerializer
+from .models import BannerImage, About, GalleryImage, Review, Contact
+from .serializers import (
+    BannerImageSerializer,
+    AboutSerializer,
+    GallerySerializer,
+    ReviewSerializer,
+    ContactSerializer,
+)
+
+
+class BannerImagesAPIView(generics.ListCreateAPIView):
+    queryset = BannerImage.objects.all()
+    serializer_class = BannerImageSerializer
 
 
 class AboutContentAPIView(generics.RetrieveAPIView):
@@ -26,3 +37,8 @@ class GalleryAPIView(generics.ListCreateAPIView):
 class ReviewAPIView(generics.ListCreateAPIView):
     queryset = Review.objects.all()
     serializer_class = ReviewSerializer
+
+
+class ContactAPIView(generics.ListCreateAPIView):
+    queryset = Contact.objects.all()
+    serializer_class = ContactSerializer

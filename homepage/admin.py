@@ -1,7 +1,32 @@
 from django.contrib import admin
 from django import forms
 from django.core.exceptions import ValidationError
-from .models import About, GalleryImage, Review, HomePage
+from .models import BannerImage, About, GalleryImage, Review, Contact, HomePage
+
+
+# Custom Formset to Ensure Exactly 3 Banner Images
+class BannerImageInlineFormSet(forms.BaseInlineFormSet):
+    def clean(self):
+        super().clean()
+        if any(self.errors):
+            return
+        total_forms = len(
+            [
+                form
+                for form in self.forms
+                if form.cleaned_data and not form.cleaned_data.get("DELETE", False)
+            ]
+        )
+        if total_forms != 3:
+            raise ValidationError("You must upload exactly 3 images.")
+
+
+class BannerImageInline(admin.TabularInline):
+    model = BannerImage
+    formset = BannerImageInlineFormSet
+    extra = 3
+    max_num = 3
+    min_num = 3
 
 
 class AboutInline(admin.StackedInline):
@@ -58,8 +83,19 @@ class ReviewInline(admin.TabularInline):
     max_num = 4
 
 
+class ContactInline(admin.TabularInline):
+    model = Contact
+    extra = 1
+
+
 class HomePageAdmin(admin.ModelAdmin):
-    inlines = [AboutInline, ReviewInline, GalleryImageInline]
+    inlines = [
+        BannerImageInline,
+        AboutInline,
+        ReviewInline,
+        GalleryImageInline,
+        ContactInline,
+    ]
 
     def has_add_permission(self, request):
         permitted = super().has_add_permission(request)

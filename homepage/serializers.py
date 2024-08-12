@@ -1,5 +1,11 @@
 from rest_framework import serializers
-from .models import About, GalleryImage, Review
+from .models import BannerImage, About, GalleryImage, Review, Contact
+
+
+class BannerImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = BannerImage
+        fields = "__all__"
 
 
 class AboutSerializer(serializers.ModelSerializer):
@@ -17,4 +23,10 @@ class GallerySerializer(serializers.ModelSerializer):
 class ReviewSerializer(serializers.ModelSerializer):
     class Meta:
         model = Review
+        fields = "__all__"
+
+
+class ContactSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Contact
         fields = "__all__"

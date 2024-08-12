@@ -105,6 +105,7 @@ dmypy.json
 /trips/banners
 /trips/uploads
 /homepage/gallery_images
+/homepage/banner_images
 /banners
 /uploads
 /jb-venv

@@ -72,6 +72,7 @@ class Trip(models.Model):
     duration = models.PositiveIntegerField(default=0)
     start_date = models.DateField()
     end_date = models.DateField()
+    starting_from_price=models.DecimalField(default=0,max_digits=20,decimal_places=2)
     type_of_group=models.CharField(max_length=20)
     policy_details=models.ForeignKey(Policies,on_delete=models.CASCADE, related_name='policies')
     inquiry_form = models.ForeignKey(InquiryContact,on_delete=models.CASCADE, related_name='inquiries')

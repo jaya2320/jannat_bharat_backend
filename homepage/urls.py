@@ -5,6 +5,7 @@ from .views import (
     GalleryAPIView,
     ReviewAPIView,
     ContactAPIView,
+    update_visit_count
 )
 
 urlpatterns = [
@@ -13,4 +14,5 @@ urlpatterns = [
     path("gallery/", GalleryAPIView.as_view()),  # URL to get gallery images
     path("reviews/", ReviewAPIView.as_view()),  # URL to get reviews
     path("contacts/", ContactAPIView.as_view()),  # URL to get contacts
+    path('visit/', update_visit_count, name='update-visit-count'),
 ]

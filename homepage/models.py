@@ -2,6 +2,9 @@ from django.db import models
 from django.core.exceptions import ValidationError
 from ckeditor.fields import RichTextField
 
+class Visit(models.Model):
+    count = models.PositiveIntegerField(default=0)
+
 
 class BannerImage(models.Model):
     homepage = models.ForeignKey(

@@ -1,6 +1,6 @@
 from rest_framework import generics
 from django.http import Http404
-from .models import BannerImage, About, GalleryImage, Review, Contact
+from .models import BannerImage, About, GalleryImage, Review, Contact, Visit
 from .serializers import (
     BannerImageSerializer,
     AboutSerializer,
@@ -8,6 +8,7 @@ from .serializers import (
     ReviewSerializer,
     ContactSerializer,
 )
+from django.http import JsonResponse
 
 
 class BannerImagesAPIView(generics.ListCreateAPIView):
@@ -42,3 +43,11 @@ class ReviewAPIView(generics.ListCreateAPIView):
 class ContactAPIView(generics.ListCreateAPIView):
     queryset = Contact.objects.all()
     serializer_class = ContactSerializer
+
+def update_visit_count(request):
+    visit, created = Visit.objects.get_or_create(id=1)
+    visit.count += 1
+    visit.save()
+    response = JsonResponse({'count': visit.count})
+    response['Cache-Control'] = 'no-cache'
+    return response

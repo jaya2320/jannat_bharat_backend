@@ -46,12 +46,17 @@ def validate_allowed_rating_value(value):
         raise ValidationError(f"Value must be one of {ALLOWED_RATING_VALUES}.")
 
 
+def validate_review_length(value):
+    if len(value.split(" ")) >= 200:  # Example: limit to 1000 characters
+        raise ValidationError('Content is too long. Please limit to 200 words.')
+
+
 class Review(models.Model):
     homepage = models.ForeignKey(
         "HomePage", related_name="reviews", on_delete=models.CASCADE
     )
     name = models.CharField(max_length=100)
-    review = RichTextField()
+    review = RichTextField(validators=[validate_review_length])
     rating = models.FloatField(validators=[validate_allowed_rating_value])
 
     def __str__(self):

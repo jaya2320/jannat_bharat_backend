@@ -1,8 +1,7 @@
 from django.contrib import admin
 from django import forms
 from django.core.exceptions import ValidationError
-from .models import BannerImage, About, GalleryImage, Review, Contact, HomePage
-
+from .models import BannerImage, About, GalleryImage, Review, Contact, HomePage, ALLOWED_CONTACT_TYPE_VALUES
 
 # Custom Formset to Ensure Exactly 3 Banner Images
 class BannerImageInlineFormSet(forms.BaseInlineFormSet):
@@ -83,8 +82,24 @@ class ReviewInline(admin.TabularInline):
     max_num = 4
 
 
+class ContactInlineFormset(forms.BaseInlineFormSet):
+    def clean(self):
+        super().clean()
+
+        # Initialize a set to track the selected choices
+        selected_choices = set()
+        # Iterate over each form in the formset
+        for form in self.forms:
+            if form.cleaned_data and not form.cleaned_data.get('DELETE', False):
+                selected_choices.add(form.cleaned_data.get('contact_name'))
+        # Check if the number of selected choices matches the number of available choices
+        if len(selected_choices) != len(ALLOWED_CONTACT_TYPE_VALUES):
+            raise ValidationError('You must select all options.')
+        return selected_choices
+
 class ContactInline(admin.TabularInline):
     model = Contact
+    formset = ContactInlineFormset
     extra = 1
 
 

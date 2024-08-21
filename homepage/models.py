@@ -11,7 +11,7 @@ class BannerImage(models.Model):
         "HomePage", related_name="banner_images", on_delete=models.CASCADE
     )
     image = models.ImageField(upload_to="homepage/banner_images/")
-    caption = models.CharField(max_length=255)
+    # caption = models.CharField(max_length=255)
 
     def __str__(self):
         return f"Banner Image {self.id}"
@@ -68,6 +68,7 @@ ALLOWED_CONTACT_TYPE_VALUES = [
     ("Phone", "Phone"),
     ("Instagram", "Instagram"),
     ("Facebook", "Facebook"),
+    ("Whatsapp", "Whatsapp")
 ]
 
 

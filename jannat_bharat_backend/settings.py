@@ -25,7 +25,25 @@ SECRET_KEY = 'django-insecure-f+ei&v#b+%qrf_382#v0iiv_x$66u_dne@x04lerkrt^n14&4_
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
+# settings.py
+CKEDITOR_UPLOAD_PATH = "uploads/"
+# settings.py
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': [
+            {'name': 'basic', 'items': ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript']},
+            {'name': 'paragraph', 'items': ['NumberedList', 'BulletedList', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock']},
+            {'name': 'styles', 'items': ['Styles', 'Format', 'FontSize']},
+            {'name': 'colors', 'items': ['TextColor', 'BGColor']},
+            {'name': 'links', 'items': ['Link', 'Unlink']},
+            {'name': 'tools', 'items': ['Maximize', 'ShowBlocks']},
+            {'name': 'table', 'items': ['Table', 'TableProperties', 'TableCellProperties', 'TableColumn', 'TableRow']},
+        ],  # Full toolbar includes options for bullet points, bold text, etc.
+        'height': 150,
+        'width': '100%'
+    },
+}
 
 
 # Application definition
@@ -37,6 +55,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'trips',
+    'homepage',
+    'ckeditor',
+    'ckeditor_uploader',
+    'rest_framework',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -47,7 +71,40 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
+
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000',
+#     'https://yourdomain.com',
+]
+
+# If you are using `CORS_ALLOWED_ORIGINS` and want to allow all methods:
+# CORS_ALLOW_METHODS = [
+#     'DELETE',
+#     'GET',
+#     'OPTIONS',
+#     'PATCH',
+#     'POST',
+#     'PUT',
+# ]
+
+# If you need to allow certain headers:
+# CORS_ALLOW_HEADERS = [
+#     'accept',
+#     'accept-encoding',
+#     'authorization',
+#     'content-type',
+#     'dnt',
+#     'origin',
+#     'user-agent',
+#     'x-csrftoken',
+#     'x-requested-with',
+# ]
+
+# Allow credentials to be included in requests
+CORS_ALLOW_CREDENTIALS = True
 
 ROOT_URLCONF = 'jannat_bharat_backend.urls'
 
@@ -121,3 +178,15 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# settings.py
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'  # Your email provider's SMTP server
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'paglonkitoli@gmail.com'
+EMAIL_HOST_PASSWORD = 'weneedhelpseriously'
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+

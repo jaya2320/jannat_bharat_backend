@@ -13,16 +13,18 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 from pathlib import Path
 import os
 
+
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/4.1/howto/static-files/
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
-
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-
 
 
 # Quick-start development settings - unsuitable for production
@@ -87,7 +89,8 @@ MIDDLEWARE = [
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
-#     'https://yourdomain.com',
+    'https://jannatbharat.com',
+    'https://www.jannatbharat.com',
 ]
 
 # If you are using `CORS_ALLOWED_ORIGINS` and want to allow all methods:
@@ -179,16 +182,11 @@ USE_I18N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.1/howto/static-files/
-
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-
-
+# Memory restriction of uploads (max 5 MB)
+DATA_UPLOAD_MAX_MEMORY_SIZE = 5242880
 

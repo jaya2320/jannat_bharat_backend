@@ -50,11 +50,6 @@ db.sqlite3
 #*/migrations/*
 #!*/migrations/__init__.py
 
-# Media files
-media/
-
-# Static files
-static/
 
 # Local settings
 local_settings.py

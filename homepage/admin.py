@@ -1,7 +1,16 @@
 from django.contrib import admin
 from django import forms
 from django.core.exceptions import ValidationError
-from .models import BannerImage, About, GalleryImage, Review, Contact, HomePage, ALLOWED_CONTACT_TYPE_VALUES
+from .models import (
+    BannerImage,
+    About,
+    GalleryImage,
+    Review,
+    Contact,
+    HomePage,
+    ALLOWED_CONTACT_TYPE_VALUES,
+)
+
 
 # Custom Formset to Ensure Exactly 3 Banner Images
 class BannerImageInlineFormSet(forms.BaseInlineFormSet):
@@ -73,6 +82,18 @@ class ReviewInlineFormSet(forms.BaseInlineFormSet):
         )
         if total_reviews != 4:
             raise ValidationError("You must add exactly 4 reviews.")
+
+        # Word limit for review content
+        max_length = 100
+
+        for form in self.forms:
+            if form.cleaned_data and not form.cleaned_data.get("DELETE", False):
+                review_content = form.cleaned_data.get("review", "").strip()
+                review_content_length = len(review_content.split(" "))
+                if review_content_length > max_length:
+                    raise ValidationError(
+                        f"The review content exceeds the maximum word limit of {max_length} characters. Current length: {review_content_length} words."
+                    )
 
 
 class ReviewInline(admin.TabularInline):

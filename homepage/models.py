@@ -47,8 +47,8 @@ def validate_allowed_rating_value(value):
 
 
 def validate_review_length(value):
-    if len(value.split(" ")) >= 200:  # Example: limit to 1000 characters
-        raise ValidationError('Content is too long. Please limit to 200 words.')
+    if len(value.split(" ")) >= 100:
+        raise ValidationError('Content is too long. Please limit to 100 words.')
 
 
 class Review(models.Model):
